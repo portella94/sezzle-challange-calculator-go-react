@@ -30,3 +30,16 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# --- Node / frontend ---
+node_modules/
+frontend/dist/
+frontend/coverage/
+*.tsbuildinfo
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store

@@ -1,0 +1,22 @@
+# Runs the full stack: Go backend + nginx-served React frontend.
+#
+#   docker compose up --build
+#   open http://localhost:8080  (frontend; nginx proxies /api to the backend)
+services:
+  backend:
+    build: ./backend
+    environment:
+      # Requests reach the backend via nginx (same-origin), so CORS is not
+      # needed in this topology; keep it locked down.
+      CORS_ORIGIN: "http://localhost:8080"
+    expose:
+      - "8080"
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
